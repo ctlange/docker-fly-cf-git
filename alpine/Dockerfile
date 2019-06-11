@@ -1,6 +1,6 @@
 FROM alpine:3.7
 
-MAINTAINER Romain Guichard <rgu@osones.io>
+MAINTAINER Christian Lange <extern.christian.lange1@volkswagen.de>
 
 ENV K8S_VERSION v1.10.0
 RUN apk add --update \
@@ -23,3 +23,6 @@ RUN mkdir -p /usr/bin && \
 
 ADD https://storage.googleapis.com/kubernetes-release/release/"$K8S_VERSION"/bin/linux/amd64/kubectl /usr/bin/kubectl
 RUN chmod +x /usr/bin/kubectl
+
+RUN apk update && apk add python py-pip
+RUN pip install awscli==1.11.168 --upgrade
